@@ -1,0 +1,47 @@
+🔌 Wiring and Circuit Connections
+This smart energy meter project uses an ESP8266 NodeMCU and a PZEM-004T v3.0 sensor to measure real-time voltage, current, power, and energy. Below are the detailed connection instructions for setting up the circuit and logging data using PLX-DAQ in Excel.
+
+🧠 Microcontroller
+ESP8266 NodeMCU (e.g., ESP-12E)
+
+📟 Sensor
+PZEM-004T v3.0 (TTL version)
+
+🔗 ESP8266 to PZEM-004T Wiring
+NodeMCU Pin	GPIO	Connects To (PZEM Pin)	Purpose
+D5	14	RX	Send data from ESP8266 to PZEM
+D6	12	TX	Receive data from PZEM
+GND	GND	GND	Common ground
+Vin (5V)	Vin	Vcc	Power supply for the PZEM module
+
+💡 Note: Since the PZEM-004T requires 5V power and NodeMCU operates at 3.3V logic, the PZEM should be powered from the Vin pin of the NodeMCU, which provides ~5V from the USB connection.
+
+⚡ AC Load Connections
+The AC side of the PZEM-004T connects to a regular home power supply:
+
+L (Line) – Connect this to the live wire, ideally through a load like a bulb or fan.
+
+N (Neutral) – Connect this to the neutral wire.
+
+⚠️ Caution: This part involves direct AC voltage. Make sure to take proper safety precautions, insulate all terminals, and test only under supervision or with protection circuits.
+
+🖥️ Excel Logging with PLX-DAQ
+To record your sensor readings in Excel using PLX-DAQ, connect your NodeMCU to your PC via USB and follow these settings:
+
+Select the correct COM port in PLX-DAQ (e.g., COM4 or COM5).
+
+Set the baud rate to 9600 (matches the Serial.begin(9600) in code).
+
+Data will appear in real time in Excel in the format defined by the code.
+
+🔁 Recap of Wiring
+D5 (GPIO14) → PZEM RX
+
+D6 (GPIO12) → PZEM TX
+
+Vin (5V) → PZEM Vcc
+
+GND → PZEM GND
+
+USB → Connects to PC for power and PLX-DAQ data logging
+
